@@ -14,8 +14,8 @@ export default function MainNavbar() {
     useEffect(() =>{
 
         const checkScroll = () =>{
-            if(window.scrollY > 0) return headerRef.current?.classList.add('border-gray-200')
-            else return headerRef.current?.classList.remove('border-gray-200')
+            if(window.scrollY > 0) return headerRef.current?.classList.add('border-b')
+            else return headerRef.current?.classList.remove('border-b')
         }
 
         window.addEventListener('scroll', checkScroll)
@@ -41,7 +41,7 @@ export default function MainNavbar() {
 
     return (
         <motion.header ref={headerRef} initial={{y:"-100%"}} animate={{y:0}}
-                className="text-stone-900 bg-white dark:bg-myBlack-900 fixed top-0 w-full border-b border-transparent" >
+                className="text-stone-900 bg-white dark:bg-myBlack-900 fixed top-0 w-full border-gray-200 dark:border-myBlack-700" >
 
             <nav className="2xl:container px-4 flex items-center justify-between py-3 ">
                 <Link href='/' className="text-2xl italic dark:text-white"><motion.span>MediFind</motion.span></Link>
