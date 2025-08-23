@@ -7,6 +7,8 @@ type PrompetMessageProps = {
   isSearch: boolean;
 };
 
+
+
 export default function PromptMessage({isSearch}:PrompetMessageProps) {
   const message = "What medicine are you looking for?".split("")
 
@@ -24,3 +26,6 @@ export default function PromptMessage({isSearch}:PrompetMessageProps) {
         </h2>
     )
 }
+
+
+

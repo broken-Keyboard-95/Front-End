@@ -2,3 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* scroll */
+.ESS::-webkit-scrollbar {
+  width: 4px; /* عرض السكروول */
+}
+
+.ESS::-webkit-scrollbar-track {
+  background: #111; /* خلفية التراك */
+  border-radius: 8px;
+}
+
+.ESS::-webkit-scrollbar-thumb {
+  background: #666; /* لون متدرج */
+  border-radius: 8px;
+}
+
+.ESS::-webkit-scrollbar-thumb:hover {
+  background: #888; /* عند الهوفر */
+}
