@@ -4,7 +4,7 @@
 
 /* scroll */
 .ESS::-webkit-scrollbar {
-  width: 4px; /* عرض السكروول */
+  width: 5px; /* عرض السكروول */
 }
 
 .ESS::-webkit-scrollbar-track {
@@ -19,4 +19,24 @@
 
 .ESS::-webkit-scrollbar-thumb:hover {
   background: #888; /* عند الهوفر */
+}
+
+
+
+/* Light mode scrollbar */
+@media (prefers-color-scheme: light) {
+  .ESS::-webkit-scrollbar {
+    width: 5px; /* ممكن تغير الحجم لو تحب */
+  }
+  .ESS::-webkit-scrollbar-track {
+    background: white; /* خلفية فاتحة */
+    border-radius: 8px;
+  }
+  .ESS::-webkit-scrollbar-thumb {
+    background: #aaa; /* لون السكروول */
+    border-radius: 8px;
+  }
+  .ESS::-webkit-scrollbar-thumb:hover {
+    background: #888; /* عند الهوفر */
+  }
 }

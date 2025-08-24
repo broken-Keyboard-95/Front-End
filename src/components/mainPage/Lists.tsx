@@ -145,12 +145,17 @@ export default function EgyptSelect({location} : {location:boolean}) {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const secWrapperRef = useRef<HTMLDivElement>(null);
     const governorateInputRef = useRef<HTMLInputElement>(null);
+    const districtInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         function handleClickOutside(event:any) {
             if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
                 setOpenGovernomentList(false);
             }
+            if (secWrapperRef.current && !secWrapperRef.current.contains(event.target)) {
+                setOpenDistrictList(false);
+            }
+            
         }
 
             document.addEventListener("mousedown", handleClickOutside);
@@ -162,8 +167,12 @@ export default function EgyptSelect({location} : {location:boolean}) {
     const [selectGoverorate, setSelectGovernorate] = useState("")
     const [searchGovernorate, setSearchGovernorate] = useState("")
 
+    const [searchDistrict, setSearchDistrict] = useState("")
+
 
     const [openGovernomentList, setOpenGovernomentList] = useState(false)
+    const [openDistrictList, setOpenDistrictList] = useState(false)
+
 
 
 
@@ -173,22 +182,60 @@ const governorates = () =>{
     if(!governorateInputRef.current?.value)
         return Object.keys(egyptData).map((governorate, index) =>{
             return <div  key={index} 
-                        onClick={() => {setSelectGovernorate(governorate); setOpenGovernomentList(false)}}
-                        className="p-2 bg-myBlack-800 my-1 cursor-pointer">{governorate}</div>
+                        onClick={() => {setSelectGovernorate(governorate); setOpenGovernomentList(false); setSearchDistrict('')}}
+                        className="p-2 bg-gray-200 dark:bg-myBlack-800 my-1 cursor-pointer">{governorate}</div>
             })
     else{
         const governorates:string[] = Object.keys(egyptData)
 
         const seachedGovernorate = governorates.filter((gov) => gov.toLocaleLowerCase().includes(searchGovernorate.toLocaleLowerCase()))
-        if(seachedGovernorate.length === 0) return <p>not found</p>
+        
+        if(seachedGovernorate.length === 0) 
+            return <p className="text-gray-300 flex items-center h-full justify-center capitalize">not found</p>
         
         return seachedGovernorate.map((governorate, index) =>{
             return <div  key={index} 
-                        onClick={() => {setSelectGovernorate(governorate); setOpenGovernomentList(false)}}
-                        className="p-2 bg-myBlack-800 my-1 cursor-pointer">{governorate}</div>
+                        onClick={() => {setSelectGovernorate(governorate); setOpenGovernomentList(false); setSearchDistrict('')}}
+                        className="p-2 bg-gray-200 dark:bg-myBlack-800 my-1 cursor-pointer">{governorate}</div>
             })
     }
 } 
+
+
+
+
+const districts = () => {
+    const governorates = Object.keys(egyptData)
+    const governorate: string | undefined = governorates.find((gov:string) =>   gov === searchGovernorate || gov === selectGoverorate )
+    
+    if(!governorate) return <p className="text-gray-300 flex items-center h-full justify-center capitalize text-sm">not found, check the governorate field</p>
+    
+    const districts: string[] = egyptData[governorate]
+ 
+    if(!districtInputRef.current?.value)
+    return districts.map((district, index) =>{
+            return <div  key={index} 
+                        onClick={() => {setSearchDistrict(district); setOpenDistrictList(false)}}
+                        className="p-2 bg-gray-200 dark:bg-myBlack-800 my-1 cursor-pointer">{district}</div>
+            })
+    else{
+
+        const searchedDistricts = districts.filter((district) =>{
+            return district.toLocaleLowerCase().includes(searchDistrict.toLocaleLowerCase())
+        })
+
+        return searchedDistricts.map((distric,index) => 
+            <div className="p-2 bg-gray-200 dark:bg-myBlack-800 my-1 cursor-pointer" key={index}>{distric}</div>)
+        
+    }
+}
+
+ 
+    const handleDistrictList = () =>{
+        if(!governorateInputRef.current?.value){
+            setOpenDistrictList(false)
+        }
+    }
 
 
 
@@ -197,29 +244,39 @@ return (
     <div className={`flex gap-8 w-full max-w-[650px]`}>
 
         {/* Governorate */}
-        <motion.div className="flex-grow relative" ref={wrapperRef}
+        <motion.div className="w-1/2 relative space-y-4" ref={wrapperRef}
                 initial={{x:-50, opacity:0}} animate={ location ? {x:0, opacity:1} : {x:-50, opacity:0}}> 
 
             <input type="text" placeholder="Governorate" value={selectGoverorate || searchGovernorate } 
                     onChange={(e) => {setSearchGovernorate(e.target.value) ; setSelectGovernorate('')} }
                     onFocus={() => setOpenGovernomentList(true)} ref={governorateInputRef}
-                    className="w-full outline-none py-2 px-4 text-sm rounded-lg bg-myBlack-900 border-[1.4px] border-myBlack-700"  />
+                    className="w-full outline-none py-2 px-4 text-sm rounded-lg dark:bg-myBlack-900 border-[1.4px] dark:border-myBlack-700"  />
 
             <div 
-                className={`${!openGovernomentList && 'invisible'}  h-[200px] overflow-y-scroll border-[1.4px] border-myBlack-700 ESS pl-1`}
-                >{governorates()}</div>
+                className={`${!openGovernomentList && 'invisible'}  h-[200px] overflow-y-scroll border-[1.4px] dark:border-myBlack-700 ESS pl-1`}
+                >{governorates()}
+            </div>
         </motion.div> 
 
 
 
 
         {/* Administrative District */}
-        <motion.div className="flex-grow" ref={secWrapperRef}
-                 initial={{x:50, opacity:0}} animate={ location ? {x:0, opacity:1} : {x:50, opacity:0}}>
+        <motion.div className="w-1/2 space-y-4" ref={secWrapperRef} initial={{x:50, opacity:0}} animate={ location ? {x:0, opacity:1} : {x:50, opacity:0}}>
+            
             <input type="text" placeholder="Administrative District" 
-                    
-                    className="w-full outline-none py-2 px-4 text-sm rounded-lg bg-myBlack-900 border-[1.4px] border-myBlack-700"/>
+                className="w-full outline-none py-2 px-4 text-sm rounded-lg dark:bg-myBlack-900 border-[1.4px] dark:border-myBlack-700"
+                onChange={(e) => setSearchDistrict(e.target.value)} value={searchDistrict}
+                onFocus={() => setOpenDistrictList(true)} ref={districtInputRef}
+                onClick={handleDistrictList}
                 
+                />
+                
+                
+            <div 
+                className={`${!openDistrictList && 'invisible'}  h-[200px] overflow-y-scroll border-[1.4px] dark:border-myBlack-700 ESS pl-1`}
+                >{districts()}
+            </div>
 
         </motion.div>
 
