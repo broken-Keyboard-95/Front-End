@@ -72,7 +72,8 @@ export default function Home() {
         }
         
         setUnValidData('')
-        return await sendMedicine(searchData)
+        await sendMedicine(searchData)
+        return searchData
     }
 
 console.log(unValidData)
