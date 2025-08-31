@@ -5,6 +5,6 @@ interface stringObject {
 }
 
 export const sendMedicine = async (data: stringObject) => {
-
     console.log(data)
+    return data
 }

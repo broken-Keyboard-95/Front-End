@@ -24,8 +24,8 @@ export default function MainNavbar() {
     }, [])
 
     const linkComponents = [
-        {text:'login', href:"/logsin", backSuccess:false, styles:'bg-black dark:bg-white dark:text-black text-white hover:opacity-80'},
-        {text:'sign up', href:"/signsup", backSuccess:false, styles:`${pathName == '/' && 'hidden'} sm:block bg-white border border-gray-300 hover:bg-gray-200 dark:text-white dark:bg-black dark:border-gray-500 border-[1.5px] dark:hover:bg-myBlack-700`},
+        {text:'login', href:"/login", backSuccess:false, styles:'bg-black dark:bg-white dark:text-black text-white hover:opacity-80'},
+        {text:'sign up', href:"/signup", backSuccess:false, styles:`${pathName == '/' && 'hidden'} sm:block bg-white border border-gray-300 hover:bg-gray-200 dark:text-white dark:bg-black dark:border-gray-500 border-[1.5px] dark:hover:bg-myBlack-700`},
     ]
 
 

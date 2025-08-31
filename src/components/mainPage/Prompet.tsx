@@ -31,7 +31,10 @@ export default function
 
       const checkResult = await checkData()
 
-      if(prompetRef.current && checkResult) prompetRef.current.value = ''
+      if(prompetRef.current && checkResult) {
+          prompetRef.current.value = ''
+          setSearchData((prev) => ({...prev, medicine:''}))
+      }
       
     }
 

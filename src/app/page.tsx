@@ -12,6 +12,8 @@ import { sendMedicine } from "../actions/sendMedicine"
 type EgyptData = {
   [key: string]: string[];
 };
+
+// all governorates and his adminstrative districts
 const egyptData :  EgyptData = {
         Cairo: [ "Heliopolis", "Nasr City", "Maadi", "Zamalek", "Shubra", "El Mokattam", "El Marg", "El Salam", ],
         Giza: [ "Dokki", "Mohandessin", "Imbaba", "6th of October", "Haram", "El Warraq", "El Badrashin", ],
@@ -42,8 +44,8 @@ const egyptData :  EgyptData = {
 
 export default function Home() {
 
-    const [isSearch, setIsSearch] = useState(false)
-    const [location, setLocation] = useState(false)
+    const [isSearch, setIsSearch] = useState<boolean>(false)
+    const [location, setLocation] = useState<boolean>(false)
     const [unValidData, setUnValidData] = useState<string>('')
     
     const [searchData, setSearchData] = useState({medicine:"", governorate:"", district:""})
@@ -72,14 +74,10 @@ export default function Home() {
         }
         
         setUnValidData('')
-        await sendMedicine(searchData)
-        return searchData
+        console.log(searchData)
+        const res = await sendMedicine(searchData)
+        return res
     }
-
-console.log(unValidData)
-
-
-
 
 
   return (

@@ -8,7 +8,7 @@
 }
 
 .ESS::-webkit-scrollbar-track {
-  background: #111; /* خلفية التراك */
+  background: transparent; /* خلفية التراك */
   border-radius: 8px;
 }
 
