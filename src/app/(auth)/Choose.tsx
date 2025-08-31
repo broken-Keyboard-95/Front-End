@@ -13,7 +13,7 @@ export default function Choose({linkComponents} : cooseType) {
     const Links = linkComponents.map((link:{text:string, href:string}, index:number) => {
         return <motion.li key={index} className='w-full' whileHover={{scaleX:1.1}}
                 initial={{x:"-100%", opacity:0}} animate={{x:0, opacity:1}} 
-                transition={{delay:index * .2 ,duration:.05, type:'spring', stiffness:150}}>
+                transition={{delay:index * .2 ,duration:.02, type:'spring', stiffness:150}}>
 
             <Link  href={link.href}
             className='block bg-myBlack-100 rounded-lg p-3 w-full border border-myBlack-700 text-center font-semibold text-xl

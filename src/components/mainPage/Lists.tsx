@@ -57,14 +57,14 @@ export default function EgyptSelect({location, setSearchData, egyptData} : Lists
     const allDisEle = districts?.map((dis, index) => {
       return <li key={index} onClick={() => {setSelectDis(dis); setOpenDis(false);
                                             setSearchData(prev => ({...prev, district:dis})) }}
-               className="cursor-pointer p-2 bg-myBlack-800 rounded">{dis}</li>
+               className="cursor-pointer p-2 bg-gray-200 dark:bg-myBlack-800 rounded">{dis}</li>
       })
 
 
     const allGovEle = allGovernorates.map((gov, index) => {
       return <li key={index} onClick={() => {setSelectGov(gov); setOpenGov(false); setSelectDis('');
                                             setSearchData(prev => ({...prev, governorate:gov, district:''})) }}
-               className="cursor-pointer p-2 bg-myBlack-800 rounded">{gov}</li>
+               className="cursor-pointer p-2 bg-gray-200 dark:bg-myBlack-800 rounded">{gov}</li>
     } )
 
 
