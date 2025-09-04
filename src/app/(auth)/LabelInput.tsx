@@ -9,7 +9,6 @@ interface LabelInput {
     name: string ,
     defaultValue?: string | undefined,
     error?: string | undefined,
-
 }
 
 export default function LabelInput({label, type, placeholder, defaultValue, error,name} : LabelInput) {

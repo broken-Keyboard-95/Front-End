@@ -8,6 +8,7 @@ import Input from '../LabelInput'
 export default function LogIn() {
 
   const [state, action, isPending] = useActionState(login , undefined)
+  console.log(state)
 
 
   return (
@@ -16,8 +17,8 @@ export default function LogIn() {
             <p className="text-center text-4xl capitalize font-Merienda">login</p>
              
             <form action={action} className='flex flex-col gap-4'>
-                  <Input label="email" type='text' placeholder='yourname@example.com' name={'email'}/>
-                  <Input label="password" type='password' placeholder='**********' name={'password'}/>
+                  <Input label="email" type='text' placeholder='yourname@example.com' name={'email'} defaultValue={state?.prevData?.email} error={state?.errors?.email}/>
+                  <Input label="password" type='password' placeholder='**********' name={'password'} defaultValue={state?.prevData?.password} error={state?.errors?.password}/>
 
                   <button type='submit' 
                       className='p-[10px] dark:bg-gradient-to-r from-[#333] via-[#3b3b3b] to-[#333] dark:hover:from-[#3b3b3b] dark:hover:via-[#424242] dark:hover:to-[#3b3b3b]
