@@ -8,9 +8,14 @@ module.exports = {
         colors:{
           myBlack:{
             "900":"#111",
+            "980":"#1b1b1b",
             "800":"#222",
             "700":"#333",
           }
+        },
+
+        fontFamily:{
+          Merienda:['"Merienda"'],
         },
 
         screens:{

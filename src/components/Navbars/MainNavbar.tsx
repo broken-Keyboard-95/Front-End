@@ -41,7 +41,8 @@ export default function MainNavbar() {
 
     return (
         <motion.header ref={headerRef} initial={{y:"-100%"}} animate={{y:0}}
-                className="text-stone-900 bg-white dark:bg-myBlack-900 fixed top-0 w-full border-gray-200 dark:border-myBlack-700" >
+                className={`text-stone-900 bg-white dark:bg-myBlack-900 fixed top-0 w-full border-gray-200 dark:border-myBlack-700
+                    ${pathName == '/login' && 'bg-gray-100'}`}>
 
             <nav className="2xl:container px-4 flex items-center justify-between py-3 ">
                 <Link href='/' className="text-2xl italic dark:text-white"><motion.span>MediFind</motion.span></Link>
